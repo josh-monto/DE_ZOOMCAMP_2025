@@ -20,24 +20,47 @@ No code
 To return the number of trips for each distance range:
 
 ```sql
-SELECT COUNT(*) FROM public.green_taxi_trips
-WHERE trip_distance <= 1
+SELECT
+    COUNT(*)
+FROM
+    green_taxi_trips
+WHERE
+    trip_distance <= 1;
 ```
 ```sql
-SELECT COUNT(*) FROM public.green_taxi_trips
-WHERE trip_distance > 1 AND trip_distance <= 3
+SELECT
+    COUNT(*)
+FROM
+    green_taxi_trips
+WHERE
+    trip_distance > 1
+    AND trip_distance <= 3;
 ```
 ```sql
-SELECT COUNT(*) FROM public.green_taxi_trips
-WHERE trip_distance > 3 AND trip_distance <= 7
+SELECT
+    COUNT(*)
+FROM
+    green_taxi_trips
+WHERE
+    trip_distance > 3
+    AND trip_distance <= 7;
 ```
 ```sql
-SELECT COUNT(*) FROM public.green_taxi_trips
-WHERE trip_distance > 7 AND trip_distance <= 10
+SELECT
+    COUNT(*)
+FROM
+    green_taxi_trips
+WHERE
+    trip_distance > 7
+    AND trip_distance <= 10;
 ```
 ```sql
-SELECT COUNT(*) FROM public.green_taxi_trips
-WHERE trip_distance > 10
+SELECT
+    COUNT(*)
+FROM
+    green_taxi_trips
+WHERE
+    trip_distance > 10;
 ```
 
 #### Question 4
@@ -45,10 +68,13 @@ WHERE trip_distance > 10
 Query to return pickup date of longest trip distance:
 
 ```sql
-SELECT TO_CHAR(lpep_pickup_datetime, 'YYYY-MM-DD')
-FROM public.green_taxi_trips
-ORDER BY trip_distance DESC
-LIMIT 1
+SELECT
+    TO_CHAR(lpep_pickup_datetime, 'YYYY-MM-DD')
+FROM
+    green_taxi_trips
+ORDER BY
+    trip_distance DESC
+LIMIT 1;
 ```
 
 #### Question 5
@@ -57,13 +83,21 @@ Query to return only the names of the 3 biggest pickup zones:
 
 ```sql
 SELECT "Zone" FROM
-	(SELECT SUM(total_amount) AS total, "Zone"
-	FROM public.green_taxi_trips t
-	JOIN zones zpu ON t."PULocationID" = zpu."LocationID"
-	WHERE TO_CHAR(lpep_pickup_datetime, 'YYYY-MM-DD') = '2019-10-18'
-	GROUP BY "Zone"
-	ORDER BY total DESC)
-LIMIT 3
+    (
+    SELECT
+	SUM(total_amount) AS total, "Zone"
+    FROM
+	green_taxi_trips t
+    JOIN
+	zones zpu ON t."PULocationID" = zpu."LocationID"
+    WHERE
+	TO_CHAR(lpep_pickup_datetime, 'YYYY-MM-DD') = '2019-10-18'
+    GROUP BY
+	"Zone"
+    ORDER BY
+	total DESC
+    )
+LIMIT 3;
 ```
 
 #### Question 6
@@ -71,13 +105,19 @@ LIMIT 3
 Query to return only the name of the drop off zone coming from East Harlem North with the largest tip
 
 ```sql
-SELECT zdo."Zone"
-FROM public.green_taxi_trips t
-JOIN zones zpu ON t."PULocationID" = zpu."LocationID"
-JOIN zones zdo ON t."DOLocationID" = zdo."LocationID"
-WHERE zpu."Zone" = 'East Harlem North'
-ORDER BY tip_amount DESC
-LIMIT 1
+SELECT
+    zdo."Zone"
+FROM
+    public.green_taxi_trips AS t
+JOIN
+    zones AS zpu ON t."PULocationID" = zpu."LocationID"
+JOIN
+    zones AS zdo ON t."DOLocationID" = zdo."LocationID"
+WHERE
+    zpu."Zone" = 'East Harlem North'
+ORDER BY
+    tip_amount DESC
+LIMIT 1;
 ```
 
 #### Question 7
