@@ -12,7 +12,7 @@ No code
 SELECT
   COUNT(*)
 FROM
-  public.yellow_tripdata
+  kestra-zm.zoomcamp.yellow_tripdata
 WHERE
   filename
 LIKE
@@ -25,7 +25,7 @@ LIKE
 SELECT
   COUNT(*)
 FROM
-  public.green_tripdata
+  kestra-zm.zoomcamp.green_tripdata
 WHERE
   filename
 LIKE
@@ -38,7 +38,7 @@ LIKE
 SELECT
   COUNT(*)
 FROM
-  public.yellow_tripdata
+  kestra-zm.zoomcamp.yellow_tripdata
 WHERE
   filename = 'yellow_tripdata_2021-03.csv'
 ```
