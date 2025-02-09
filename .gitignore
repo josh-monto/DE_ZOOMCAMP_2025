@@ -1,5 +1,0 @@
-# ignore all .json files
-*.json
-
-# ignore all .parquet files
-*.parquet
